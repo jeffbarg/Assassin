@@ -3,7 +3,8 @@ Assassin
 
 Assassin Game
 
-    ____             __                 ______        __ 
-   / __/_____ ______/ /____  ___ ___   /_  __/__ ____/ / 
-  / _// __/ // / __/ __/ _ \(_-</ -_)   / / / -_) __/ _ \
- /_/ /_/  \_,_/\__/\__/\___/___/\__/   /_/  \__/\__/_//_/
+To get started, in terminal go to the 'django' directory and run:
+
+'./manage.py syncdb'
+
+Don't bother making a superuser.  Registration is the first screen ATM.

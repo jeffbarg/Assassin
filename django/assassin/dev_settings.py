@@ -63,7 +63,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/Users/jeffbarg/Sites/assassin/THIS_DOES_NOT_EXIST/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -71,7 +71,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-	"/Users/jeffbarg/Sites/assassin/static"
+	'/Users/jeffbarg/Sites/assassin/static/',
 	# Put strings here, like "/home/html/static" or "C:/www/django/static".
 	# Always use forward slashes, even on Windows.
 	# Don't forget to use absolute paths, not relative paths.
@@ -124,18 +124,21 @@ INSTALLED_APPS = (
 	'django.contrib.sites',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
-	# Uncomment the next line to enable the admin:
-	# 'django.contrib.admin',
-	# Uncomment the next line to enable admin documentation:
-	# 'django.contrib.admindocs',
+
+	'django.contrib.admin',
+	'django.contrib.admindocs',
+
 	'games',
 	'gameplay',
-	'registration',
-	
+	'registration',	
 	'main',
 
 	'south',
 )
+
+LOGIN_URL          = 'django.contrib.auth.views.login'
+LOGOUT_URL         = 'django.contrib.auth.views.logout'
+LOGIN_REDIRECT_URL = 'games.views.index'
 
 # AUTH_USER_MODEL = 'registration.GameUser'
 
