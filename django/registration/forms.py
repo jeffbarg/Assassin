@@ -1,8 +1,9 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 from django.utils.translation import ugettext, ugettext_lazy as _
+
+from registration.models import GameUser
 
 class UserCreateForm(forms.ModelForm):
 	"""
@@ -41,7 +42,7 @@ class UserCreateForm(forms.ModelForm):
 		widget=forms.PasswordInput)
 
 	class Meta:
-		model = User
+		model = GameUser
 		fields = ("first_name", "last_name", "username",)
 
 	def clean_username(self):
@@ -49,8 +50,8 @@ class UserCreateForm(forms.ModelForm):
 		# but it sets a nicer error message than the ORM. See #13147.
 		username = self.cleaned_data["username"]
 		try:
-			User._default_manager.get(username=username)
-		except User.DoesNotExist:
+			GameUser._default_manager.get(username=username)
+		except GameUser.DoesNotExist:
 			return username
 		raise forms.ValidationError(
 			self.error_messages['duplicate_username'],

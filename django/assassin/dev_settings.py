@@ -140,7 +140,7 @@ LOGIN_URL          = 'django.contrib.auth.views.login'
 LOGOUT_URL         = 'django.contrib.auth.views.logout'
 LOGIN_REDIRECT_URL = 'games.views.index'
 
-# AUTH_USER_MODEL = 'registration.GameUser'
+AUTH_USER_MODEL = 'registration.GameUser'
 
 
 # A sample logging configuration. The only tangible logging
