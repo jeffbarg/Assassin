@@ -95,6 +95,23 @@ TEMPLATE_LOADERS = (
 	# 'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.request",
+    "django.contrib.messages.context_processors.messages",
+
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+
+AUTHENTICATION_BACKENDS = (
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
 MIDDLEWARE_CLASSES = (
 	'django.middleware.common.CommonMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
@@ -129,18 +146,41 @@ INSTALLED_APPS = (
 	'django.contrib.admindocs',
 
 	'games',
-	'gameplay',
-	'registration',	
+	'gameplay',	
 	'main',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+	    'allauth.socialaccount.providers.facebook',
+
+	'bootstrapform',
 
 	'south',
 )
 
-LOGIN_URL          = 'django.contrib.auth.views.login'
-LOGOUT_URL         = 'django.contrib.auth.views.logout'
-LOGIN_REDIRECT_URL = 'games.views.index'
 
-AUTH_USER_MODEL = 'registration.GameUser'
+# LOGIN_URL           = 'django.contrib.auth.views.login'
+# LOGOUT_URL          = 'django.contrib.auth.views.logout'
+# LOGIN_REDIRECT_URL  = 'games.views.index'
+
+# AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
+
+# DJANGO_FACEBOOK https://github.com/tschellenbach/Django-facebook
+
+FACEBOOK_APP_ID     = '465041326919886'
+FACEBOOK_APP_SECRET = 'b6c9ac1913db9f36b591b59c5987221d'
+
+SOCIALACCOUNT_PROVIDERS = \
+    { 'facebook':
+        { 'SCOPE': ['email'],
+          'AUTH_PARAMS': { 'auth_type':  '' },
+          'METHOD': 'oauth2' ,
+          'LOCALE_FUNC': lambda request: 'en_US'} }
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USERNAME_REQUIRED = False
 
 
 # A sample logging configuration. The only tangible logging

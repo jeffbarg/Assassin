@@ -5,15 +5,6 @@
 <h1>Hello!</h1>
 <p>This is the games app.</p>
 
-<form method="post" action="{% url 'games.views.new' %}">
-{% csrf_token %}
-
-<table>
-{{form}}
-</table>
-
-<input type="hidden" name="id_creator" value="{{user.id}}" />
-<input type="submit" value="Create" />
-</form>
+{{game}}
 
 {% endblock %}

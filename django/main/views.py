@@ -9,7 +9,6 @@ import datetime
 
 # Create your views here.
 def index(request):
-	
 	return HttpResponseRedirect(reverse('games-index'))
 
 

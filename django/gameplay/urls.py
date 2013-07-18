@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
-	# Examples:
-	# url(r'^$', 'assassin.views.home', name='home'),
-	# url(r'^assassin/', include('assassin.foo.urls')),
+	url(r'^$', 'gameplay.views.index', name='game-index'),
+	url(r'^request-invite/$', 'gameplay.views.request_invite', name='game-request-invite'),
 )

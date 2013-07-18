@@ -11,10 +11,10 @@ urlpatterns = patterns('',
 
 	url(r'^$', 'main.views.index'),
 
-	url(r'^user/', include('django.contrib.auth.urls')),
-	url(r'^user/', include('registration.urls')),
+	(r'^accounts/', include('allauth.urls')),
 
 	url(r'^games/', include('games.urls')),
+	url(r'^game/(?P<id_number>\d+)/', include('gameplay.urls')),
 
 	# Uncomment the admin/doc line below to enable admin documentation:
 	url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

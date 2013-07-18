@@ -8,12 +8,15 @@
 
 <ul>
 	{% for game in games %}
-	<li>{{game}}
+	<li><a href="{{game.get_absolute_url}}">{{game}}</a>
 	- <a href="{% url 'games.views.edit' game.id %}">Edit</a>
 	- <a href="{% url 'games.views.delete' game.id %}">Delete</a>
 	</li>
 	{% endfor %}
 
+{% load account %}
+
+{% user_display user %}
 	(div>{asdf})*500
 </ul>
 
