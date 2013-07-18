@@ -20,17 +20,17 @@ class GameSession(models.Model):
 	num_kills = models.IntegerField('Kills', default = 0)
 	kills     = models.ManyToManyField('self')
 
-	created_at = models.DateField('created_at')
+	created_at = models.DateTimeField('created_at')
 
 	def save(self):
 		if not self.id:
 			if not self.created_at:
 				self.created_at = timezone.now()
 
-		super(Game, self).save()
+		super(GameSession, self).save()
 
 	def __unicode__(self):
-		return self.name
+		return 'Game Session: ' + self.user.get_full_name()
 
 	def get_absolute_url(self):
 		return reverse('gameplay.views.index', args=[str(self.id)])

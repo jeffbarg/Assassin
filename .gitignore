@@ -1,5 +1,7 @@
 *.pyc
 *.sqlite
+media/*
+static/codekit-config.json
 
 # OS generated files #
 ######################

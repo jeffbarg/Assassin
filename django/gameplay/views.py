@@ -13,13 +13,12 @@ from django.utils import timezone
 
 # Create your views here.
 from games.models import Game
+from gameplay.models import GameSession
+
 
 @login_required
 def index(request, id_number):	
-	c = {} #Context
-
 	game = Game.objects.get(id=id_number)
-	c['game'] = game
 	
 	if (game == None):
 		return HttpResponse(status=404)
@@ -29,10 +28,19 @@ def index(request, id_number):
 		return HttpResponseRedirect(reverse('game-request-invite', args=(game.id,)))
 
 	now = timezone.now()
-	if (game.start_date < now):
+	if (game.start_date > now):
 		return HttpResponse('TODO: add registered screen');
-	else:
-		return render(request, 'gameplay/index.html', c,)
+
+	# Now execute Gameplay logic
+
+	c = {} #Context
+	
+	game_user_sessions = GameSession.objects.filter(game=game)
+
+	c['game']  = game
+	c['user_sessions'] = game_user_sessions
+	
+	return render(request, 'gameplay/index.html', c,)
 
 @login_required
 def request_invite(request, id_number):
@@ -45,7 +53,7 @@ def request_invite(request, id_number):
 		return HttpResponse(status=404)
 
 	now = timezone.now()
-	if (game.start_date > now):
+	if (game.start_date < now):
 		return HttpResponse('TODO: add game already started screen');
 
 	if request.method == "GET":
@@ -60,3 +68,6 @@ def request_invite(request, id_number):
 		if (game.allows_user(user)):
 			game.register_user(user)
 			return HttpResponseRedirect(reverse('game-index', args=(game.id,)))
+		else:
+			c['error_message'] = 'You are not permitted to join this game.'
+			return render(request, 'gameplay/request_invite.html', c,) 

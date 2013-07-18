@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from gameplay.models import GameSession
+
+class GameSessionAdmin(admin.ModelAdmin):
+	pass
+
+admin.site.register(GameSession, GameSessionAdmin)
