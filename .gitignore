@@ -3,6 +3,7 @@
 media/*
 static/codekit-config.json
 
+
 # OS generated files #
 ######################
 .DS_Store
