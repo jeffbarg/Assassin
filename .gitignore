@@ -2,7 +2,7 @@
 *.sqlite
 media/*
 static/codekit-config.json
-
+django/manage.py
 
 # OS generated files #
 ######################
