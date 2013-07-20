@@ -12,6 +12,14 @@
 {{form}}
 </table>
 
+	{% if groups %}
+	{% for group in groups %}
+		<p>	
+			<label for="{{group.id}}">{{group.name}}</label>
+			<input type="checkbox" name="{{group.id}}" id="{{group.id}}" />
+		</p>
+	{% endfor %}
+	{% endif %}
 <input type="hidden" name="id_creator" value="{{user.id}}" />
 <input type="submit" value="Create" />
 </form>

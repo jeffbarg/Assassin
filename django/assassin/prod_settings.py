@@ -174,7 +174,7 @@ FACEBOOK_APP_SECRET = 'b6c9ac1913db9f36b591b59c5987221d'
 
 SOCIALACCOUNT_PROVIDERS = \
     { 'facebook':
-        { 'SCOPE': ['email'],
+        { 'SCOPE': ['email, user_groups'],
           'AUTH_PARAMS': { 'auth_type':  '' },
           'METHOD': 'oauth2' ,
           'LOCALE_FUNC': lambda request: 'en_US'} }

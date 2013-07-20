@@ -12,6 +12,8 @@ from django.shortcuts import resolve_url
 from games.models import Game
 from games.forms import GameCreateForm, GameDeleteForm
 
+from facepy import GraphAPI
+
 # Create your views here.
 
 @login_required
@@ -23,6 +25,8 @@ def index(request):
 @login_required
 def new(request, redirect_to="/games/"):
 	c = {} #Context
+	user = request.user
+
 	creation_form = GameCreateForm
 	if request.method == "POST":
 		form = creation_form(data=request.POST)
@@ -34,14 +38,29 @@ def new(request, redirect_to="/games/"):
 			# Okay, security check complete. Log the user in.
 			# auth_login(request, form.get_user())
 			game = form.save(commit=False);
-			game.creator = request.user
-			game.save()
+			game.creator = user
+			game.save()	
 
 			return HttpResponseRedirect(redirect_to)
 	else:
 		form = creation_form(None)
 
 	c['form']  = form
+
+	access_token = None
+	for account in user.socialaccount_set.all():
+		access_token = str(account.socialtoken_set.get())
+
+	groups = None
+	if (access_token != None):
+		graph = GraphAPI(access_token)
+
+		groups_data = graph.get('me/groups', paginate=False)[u'data']
+		groups = sorted(groups_data, key=lambda k: k['bookmark_order']) 
+
+		# groups = graph.fql('SELECT creator, gid, name FROM group WHERE gid in (select gid from group_member where uid = me())')
+
+	c['groups'] = groups
 
 	return render(request, 'games/new.html', c,)
 
