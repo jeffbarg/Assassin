@@ -11,15 +11,16 @@ from django.core.urlresolvers import reverse
 import re
 
 # Create your models here.
+
 class GameSession(models.Model):
-	user      = models.ForeignKey(settings.AUTH_USER_MODEL)
-	game      = models.ForeignKey('games.Game')
-
-	killed    = models.BooleanField('Is User Killed', default=False)
-	target    = models.ForeignKey('self', blank = True, null=True)
-	num_kills = models.IntegerField('Kills', default = 0)
-	kills     = models.ManyToManyField('self')
-
+	user       = models.ForeignKey(settings.AUTH_USER_MODEL)
+	game       = models.ForeignKey('games.Game')
+	
+	target     = models.OneToOneField('self', blank = True, null=True)
+	killed     = models.BooleanField('Is User Killed', default=False)
+	num_kills  = models.IntegerField('Kills', default = 0)
+	kills      = models.ManyToManyField('self')
+	
 	created_at = models.DateTimeField('created_at')
 
 	def save(self):
@@ -34,3 +35,32 @@ class GameSession(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('gameplay.views.index', args=[str(self.id)])
+
+
+# Create your models here.
+class GameEvent(models.Model):
+	ACTION_TYPES = (
+		('U', 'Profile Update'),
+		('K', 'Kill'),
+		('T', 'Text'),
+	)
+
+	game      = models.ForeignKey('games.Game')
+	
+	from_user = models.OneToOneField('gameplay.GameSession', blank = True, null=True, related_name='from_user')
+	to_user = models.OneToOneField('gameplay.GameSession', blank = True, null=True, related_name='to_user')
+
+	message = models.CharField(max_length=1000)
+	action_type = models.CharField(max_length=1, choices=ACTION_TYPES) 
+
+	created_at = models.DateTimeField('created_at')
+
+	def save(self):
+		if not self.id:
+			if not self.created_at:
+				self.created_at = timezone.now()
+
+		super(GameEvent, self).save()
+
+	def __unicode__(self):
+		return 'Game Event: ' + self.message

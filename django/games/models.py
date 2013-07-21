@@ -13,7 +13,7 @@ from gameplay.models import GameSession
 
 # Create your models here.
 class Game(models.Model):
-	creator            = models.ForeignKey(settings.AUTH_USER_MODEL)                    
+	creator            = models.ForeignKey(settings.AUTH_USER_MODEL)
 	name               = models.CharField('Name of this Game', max_length=150)
 
 	start_date         = models.DateTimeField('Start Date')

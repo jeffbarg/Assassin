@@ -18,29 +18,29 @@ body {
   margin: 0 auto -60px; }
 
 /* Set the fixed height of the footer here */
-/* line 21, ../../scss/main/base.scss */
+/* line 22, ../../scss/main/base.scss */
 #push,
 #footer {
   height: 60px; }
 
-/* line 24, ../../scss/main/base.scss */
+/* line 25, ../../scss/main/base.scss */
 #footer {
   background-color: #f5f5f5; }
 
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
-/* line 35, ../../scss/main/base.scss */
+/* line 36, ../../scss/main/base.scss */
 #footer {
   border-top: 1px solid #ddd;
   margin-bottom: 60px; }
 
-/* line 39, ../../scss/main/base.scss */
+/* line 40, ../../scss/main/base.scss */
 .container {
   width: auto;
-  max-width: 680px; }
+  max-width: 940px; }
 
-/* line 43, ../../scss/main/base.scss */
+/* line 44, ../../scss/main/base.scss */
 .container .credit {
   margin: 20px 0;
   text-align: center; }

@@ -56,9 +56,9 @@ def new(request, redirect_to="/games/"):
 		graph = GraphAPI(access_token)
 
 		groups_data = graph.get('me/groups', paginate=False)[u'data']
-		groups = sorted(groups_data, key=lambda k: k['bookmark_order']) 
+		#groups = sorted(groups_data, key=lambda k: k['bookmark_order']) 
 
-		# groups = graph.fql('SELECT creator, gid, name FROM group WHERE gid in (select gid from group_member where uid = me())')
+		groups = graph.fql('SELECT creator, gid, name, pic_cover FROM group WHERE gid in (select gid from group_member where uid = me()) ORDER BY update_time DESC')[u'data']
 
 	c['groups'] = groups
 

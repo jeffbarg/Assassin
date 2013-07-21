@@ -11,12 +11,13 @@
 <table>
 {{form}}
 </table>
-
 	{% if groups %}
 	{% for group in groups %}
-		<p>	
+		<p>
 			<label for="{{group.id}}">{{group.name}}</label>
 			<input type="checkbox" name="{{group.id}}" id="{{group.id}}" />
+
+			{{group.pic_cover}}
 		</p>
 	{% endfor %}
 	{% endif %}
