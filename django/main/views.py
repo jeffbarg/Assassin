@@ -9,7 +9,12 @@ import datetime
 
 # Create your views here.
 def index(request):
-	return HttpResponseRedirect(reverse('games-index'))
+	user = request.user
+	if (user != None and user.is_authenticated and user.is_active):
+		return HttpResponseRedirect(reverse('games-index'))
+	c = {} #Context
+	return render(request, 'main/homepage.html', c,)
+	
 
 
 def error404(request):

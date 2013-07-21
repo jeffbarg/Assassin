@@ -179,14 +179,17 @@ SOCIALACCOUNT_PROVIDERS = \
           'METHOD': 'oauth2' ,
           'LOCALE_FUNC': lambda request: 'en_US'} }
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_USERNAME_REQUIRED = False
-SOCIALACCOUNT_AVATAR_SUPPORT = 'avatar'
+LOGIN_REDIRECT_URL            = 'games.views.index'
 
-AUTO_GENERATE_AVATAR_SIZES = (130,)
-AVATAR_THUMB_QUALITY = 1
-AVATAR_DEFAULT_URL = "/static/target_default.png"
+ACCOUNT_EMAIL_REQUIRED        = True
+ACCOUNT_USERNAME_REQUIRED     = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+SOCIALACCOUNT_AVATAR_SUPPORT  = 'avatar'
+
+
+AUTO_GENERATE_AVATAR_SIZES    = (130,)
+AVATAR_THUMB_QUALITY          = 1
+AVATAR_DEFAULT_URL            = "/static/target_default.png"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

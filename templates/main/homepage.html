@@ -1,0 +1,51 @@
+{% extends "main/base.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load staticfiles %}
+{% load socialaccount %}
+{% block header %}<div id="header-accent"></div>{% endblock %} {# Empty Header #}
+
+{% block extrastyle %}
+	{{ block.super }}
+	<link rel="stylesheet" href="{% static "css/main/homepage.css" %}"/>
+{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Sign In" %}</h1>
+<div id="login-form">
+	{# Regular Account Sign-In #}
+	<form class="login" method="POST" action="{% url 'account_login' %}">
+		<input id="id_login" class="input" name="login" placeholder="E-mail address" type="text">
+		<input id="id_password" class="input" name="password" placeholder="Password" type="password">
+
+		<input class="btn input" type="submit" value="{% trans "Sign In" %}">
+		{# Facebook Sign In w/ Django-AllAuth #}		
+
+		<a href="{% provider_login_url 'facebook' process='login' %}" class="btn btn-primary input">Connect With Facebook</a>
+		
+		{% if redirect_field_value %}
+		<input type="hidden" class="input" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+		{% endif %}
+		{% csrf_token %}
+	</form>
+	
+
+
+
+</div>
+
+{% endblock %}
+
+<a href="{{ signup_url }}">sign up</a>
+		<div class="form-actions">
+			<button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+			<a class="btn" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+		</div>
+
+		{% if socialaccount.providers  %}
+			<input class="btn btn-primary" />
+				{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+			{% include "socialaccount/snippets/login_extra.html" %}
+		{% endif %}

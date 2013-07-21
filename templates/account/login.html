@@ -1,47 +1,44 @@
 {% extends "main/base.html" %}
 
-{% load url from future %}
 {% load i18n %}
-{% load bootstrap %}
 {% load account %}
+{% load staticfiles %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block header %}<div id="header-accent"></div>{% endblock %} {# Empty Header #}
 
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static "css/main/homepage.css" %}"/>
+{% endblock %}
 
 {% block content %}
 
+<a href="{{ signup_url }}">sign up</a>
+
+{# Facebook Sign In w/ Django-AllAuth #}
 <h1>{% trans "Sign In" %}</h1>
-
 {% if socialaccount.providers  %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third pAarty accounts. Or, <a href="{{ signup_url }}">sign up</a> 
-for a {{site_name}} account and sign in
-below:{% endblocktrans %}</p>
-
 <div class="socialaccount_ballot">
-
   <ul class="socialaccount_providers">
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
   </ul>
-
-  <div class="login-or">{% trans 'or' %}</div>
-
 </div>
-
 {% include "socialaccount/snippets/login_extra.html" %}
-
 {% endif %}
 
+{# Regular Account Sign-In #}
 <form class="login" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
-  {{ form|bootstrap }}
+  <input id="id_login" name="login" placeholder="E-mail address" type="text">
+  <input id="id_password" name="password" placeholder="Password" type="password">
+
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
+
   <div class="form-actions">
     <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
     <a class="btn" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-
   </div>
 </form>
 
