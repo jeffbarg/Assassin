@@ -19,7 +19,6 @@ class GameSession(models.Model):
 	target     = models.OneToOneField('self', blank = True, null=True)
 	killed     = models.BooleanField('Is User Killed', default=False)
 	num_kills  = models.IntegerField('Kills', default = 0)
-	kills      = models.ManyToManyField('self')
 	
 	created_at = models.DateTimeField('created_at')
 

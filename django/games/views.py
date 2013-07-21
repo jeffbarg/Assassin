@@ -104,7 +104,7 @@ def delete(request, id_number):
 		return HttpResponse(status=404)
 	if (game.creator.id != request.user.id):
 		return HttpResponse(status=403)
-
+	
 	c = {} #Context
 	form = GameDeleteForm(request.POST or None)
 	if request.method == "POST":

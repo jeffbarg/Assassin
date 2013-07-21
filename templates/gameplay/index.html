@@ -31,7 +31,20 @@
 			<div class="hero-img" style="background-image:url('https://sphotos-b.xx.fbcdn.net/hphotos-ash3/s720x720/535908_2823165914515_799835421_n.jpg'); background-position:0 -19px;">
 			</div>
 
-			 <div style="background-image:url({% avatar_url user 120 %});" class="img-circle target-img">
+			 <div style="background-image:url({% avatar_url user 130 %});" class="img-circle target-img">
+			 </div>
+
+			 <div id="assignment">
+				<div class="pull-left">
+					<span class="header">Current Target: </span>{{user.get_full_name}}
+				</div>
+				<div class="pull-right">
+					<form action="ELIMINATE" method="post">
+						<input type="text" placeholder="Enter Target's Pin" />
+						<input class="btn btn-danger" type="submit" />
+					</form>
+				</div>
+			 </div>	
 		</div>
 	</div>
 

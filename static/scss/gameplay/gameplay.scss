@@ -18,17 +18,18 @@ $redColor: #a1101d;
 
 	margin-bottom: 20px;
 
+	.header {
+		color: $redColor;
+		font-size: 12pt;
+		font-weight: 600;
+	}
+
 	&.top {
 		border-top: none;
 		@include border-top-radius(0);
 	}
 	&.module-content {
 		padding: 10px;
-		.header {
-			color: $redColor;
-			font-size: 12pt;
-			font-weight: 600;
-		}
 	}
 }
 
@@ -46,7 +47,7 @@ $redColor: #a1101d;
 	position: relative;
 
 	.target-img {
-		$imgSize: 120px;
+		$imgSize: 130px;
 		width:$imgSize;
 		height: $imgSize;
 
@@ -56,7 +57,15 @@ $redColor: #a1101d;
 		left: 50%;
 		margin-left: -$imgSize/2;
 		
-		border: 5px solid #f0f0f0;
+		border: 5px solid white;//#f0f0f0;
+	}
+}
+
+#assignment {
+	padding: 8px 10px;
+	input[type="text"] {
+		width: 150px;
+		margin-bottom: auto;
 	}
 }
 
