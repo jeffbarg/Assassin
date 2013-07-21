@@ -1,11 +1,76 @@
 {% extends "main/base.html" %}
 
+{% load staticfiles %}
+{% load avatar_tags %}
+
+{% block extrastyle %}
+{{ block.super }}
+
+<link rel="stylesheet" href="{% static "css/gameplay/gameplay.css" %}"/>
+{% endblock %}
+
 {% block content %}
 
 <div class="left-col">
+	<div class="module top">
+		<div id="pin">
+
+		</div>
+	</div>
+
+	<div class="module module-content">
+		<div id="past-targets">
+			<div class="header">Your Past Targets</div>
+		</div>
+	</div>
 </div>
 
 <div class="right-col">
+	<div class="module top">
+		<div id="target-info">
+			<div class="hero-img" style="background-image:url('https://sphotos-b.xx.fbcdn.net/hphotos-ash3/s720x720/535908_2823165914515_799835421_n.jpg'); background-position:0 -19px;">
+			</div>
+
+			 <div style="background-image:url({% avatar_url user 120 %});" class="img-circle target-img">
+		</div>
+	</div>
+
+	<div class="module">
+		<div class="timeline">
+			<ul>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+				<li class="event">
+					<strong>Person 1</strong> Killed <strong>Person 2</strong>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 
