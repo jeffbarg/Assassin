@@ -2,17 +2,11 @@
 
 {% block content %}
 
-<h1>Hello!</h1>
-<p>This is the gameplay app.</p>
+<div class="left-col">
+</div>
 
-{{game}}
+<div class="right-col">
+</div>
 
-<ul>
-{% for user_session in user_sessions %}
-	<li>
-		{{user_session.user.get_full_name}}
-	</li>
-{% endfor %}
-</ul>
 
 {% endblock %}

@@ -45,3 +45,26 @@ body {
 	margin: 20px 0;
 	text-align:center;
 }
+
+
+
+/* Extra Nav Styles
+-------------------------------------------------- */
+/* Extend BootStrap's nav to include a centered title field. */
+
+
+.title-container {
+	$titleContainerWidth: 600px;
+	width: $titleContainerWidth;
+	position: absolute;
+	left: 50%;
+	margin-left: -$titleContainerWidth/2;
+
+	text-align: center;
+
+	.title {
+		margin: auto;
+		float: none;
+		display: inline-block;
+	}
+}

@@ -4,6 +4,8 @@ media/*
 static/codekit-config.json
 django/manage.py
 
+static/.sass-cache/*
+
 # OS generated files #
 ######################
 .DS_Store
