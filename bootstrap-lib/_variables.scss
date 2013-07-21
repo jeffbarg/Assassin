@@ -23,7 +23,7 @@ $white:                 #fff !default;
 $blue:                  #049cdb !default;
 $blueDark:              #0064cd !default;
 $green:                 #46a546 !default;
-$red:                   #9d261d !default;
+$red:                   #a1101d !default;
 $yellow:                #ffc40d !default;
 $orange:                #f89406 !default;
 $pink:                  #c3325f !default;
@@ -44,9 +44,9 @@ $linkColorHover:        darken($linkColor, 15%) !default;
 
 // Typography
 // -------------------------
-$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
-$monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$sansFontFamily:        inherit !default; // "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$serifFontFamily:       inherit !default; // Georgia, "Times New Roman", Times, serif !default;
+$monoFontFamily:        inherit !default; // Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
 $baseFontSize:          14px !default;
 $baseFontFamily:        $sansFontFamily !default;
@@ -100,8 +100,8 @@ $btnSuccessBackgroundHighlight:     #51a351 !default;
 $btnWarningBackground:              lighten($orange, 15%) !default;
 $btnWarningBackgroundHighlight:     $orange !default;
 
-$btnDangerBackground:               #ee5f5b !default;
-$btnDangerBackgroundHighlight:      #bd362f !default;
+$btnDangerBackground:               lighten(#a1101d, 7%) !default; // #ee5f5b !default;
+$btnDangerBackgroundHighlight:      #a1101d !default; //#bd362f !default;
 
 $btnInverseBackground:              #444 !default;
 $btnInverseBackgroundHighlight:     $grayDarker !default;

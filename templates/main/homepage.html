@@ -13,7 +13,21 @@
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<div id="homepage-header">
+	<div class="pull-left">
+		<a href="/"><img src="{% static 'images/korosu_logo.png' %}" /></a>
+		<div class="tagline">Korosu is a game where players eliminate each other until there is only one left.</div>
+	</div>
+	<div class="pull-right">
+		<nav>
+			<ul>
+				<li><a href="http://jaymoon.me/">About</a> {# JB-TODO: Change to about page #}</li>
+				<li><a href="{{ signup_url }}">Sign up</a></li>
+			</ul>
+		</nav>
+	</div>
+</div>
+
 <div id="login-form">
 	{# Regular Account Sign-In #}
 	<form class="login" method="POST" action="{% url 'account_login' %}">
@@ -30,22 +44,9 @@
 		{% endif %}
 		{% csrf_token %}
 	</form>
-	
-
-
-
+	<div class="forgot-password">
+		<a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+	</div>
 </div>
 
 {% endblock %}
-
-<a href="{{ signup_url }}">sign up</a>
-		<div class="form-actions">
-			<button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
-			<a class="btn" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-		</div>
-
-		{% if socialaccount.providers  %}
-			<input class="btn btn-primary" />
-				{% include "socialaccount/snippets/provider_list.html" with process="login" %}
-			{% include "socialaccount/snippets/login_extra.html" %}
-		{% endif %}

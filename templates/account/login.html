@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load account %}
 {% load staticfiles %}
-
+{% load socialaccount %}
 {% block header %}<div id="header-accent"></div>{% endblock %} {# Empty Header #}
 
 {% block extrastyle %}
@@ -13,34 +13,40 @@
 
 {% block content %}
 
-<a href="{{ signup_url }}">sign up</a>
-
-{# Facebook Sign In w/ Django-AllAuth #}
-<h1>{% trans "Sign In" %}</h1>
-{% if socialaccount.providers  %}
-<div class="socialaccount_ballot">
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-</div>
-{% include "socialaccount/snippets/login_extra.html" %}
-{% endif %}
-
-{# Regular Account Sign-In #}
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  <input id="id_login" name="login" placeholder="E-mail address" type="text">
-  <input id="id_password" name="password" placeholder="Password" type="password">
-
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-
-  <div class="form-actions">
-    <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
-    <a class="btn" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+<div id="homepage-header">
+  <div class="pull-left">
+    <a href="/"><img src="{% static 'images/korosu_logo.png' %}" /></a>
+    <div class="tagline">Korosu is a game where players eliminate each other until there is only one left.</div>
   </div>
-</form>
+  <div class="pull-right">
+    <nav>
+      <ul>
+        <li><a href="http://jaymoon.me/">About</a> {# JB-TODO: Change to about page #}</li>
+        <li><a href="{{ signup_url }}">Sign up</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div id="login-form">
+  {# Regular Account Sign-In #}
+  <form class="login" method="POST" action="{% url 'account_login' %}">
+    <input id="id_login" class="input" name="login" placeholder="E-mail address" type="text">
+    <input id="id_password" class="input" name="password" placeholder="Password" type="password">
+
+    <input class="btn input" type="submit" value="{% trans "Sign In" %}">
+    {# Facebook Sign In w/ Django-AllAuth #}    
+
+    <a href="{% provider_login_url 'facebook' process='login' %}" class="btn btn-primary input">Connect With Facebook</a>
+    
+    {% if redirect_field_value %}
+    <input type="hidden" class="input" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    {% csrf_token %}
+  </form>
+  <div class="forgot-password">
+    <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  </div>
+</div>
 
 {% endblock %}
-

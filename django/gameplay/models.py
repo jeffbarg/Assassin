@@ -35,11 +35,11 @@ class GameSession(models.Model):
 	def get_absolute_url(self):
 		return reverse('gameplay.views.index', args=[str(self.id)])
 
-
 # Create your models here.
 class GameEvent(models.Model):
 	ACTION_TYPES = (
-		('U', 'Profile Update'),
+		('S', 'Sign Up'),
+		('P', 'Profile Update'),
 		('K', 'Kill'),
 		('T', 'Text'),
 	)
@@ -63,3 +63,4 @@ class GameEvent(models.Model):
 
 	def __unicode__(self):
 		return 'Game Event: ' + self.message
+

@@ -11,27 +11,52 @@ body {
   background-color: #970105; }
 
 /* line 15, ../../scss/main/homepage.scss */
+#homepage-header {
+  margin-top: 40px; }
+  /* line 18, ../../scss/main/homepage.scss */
+  #homepage-header .tagline {
+    margin-top: 10px;
+    font-size: 13pt; }
+  /* line 23, ../../scss/main/homepage.scss */
+  #homepage-header ul {
+    margin: 0; }
+    /* line 25, ../../scss/main/homepage.scss */
+    #homepage-header ul li {
+      display: inline-block;
+      margin-left: 10px; }
+    /* line 29, ../../scss/main/homepage.scss */
+    #homepage-header ul a {
+      display: block; }
+
+/* line 35, ../../scss/main/homepage.scss */
 #login-form {
   width: 280px;
-  padding: 20px;
   position: absolute;
   left: 50%;
   margin-left: -160px;
-  top: 230px;
-  background-color: white;
-  border: 1px solid #d3d3d3;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 1px 15px 0px rgba(211, 211, 211, 0.5);
-  -moz-box-shadow: 0px 1px 15px 0px rgba(211, 211, 211, 0.5);
-  box-shadow: 0px 1px 15px 0px rgba(211, 211, 211, 0.5); }
-  /* line 32, ../../scss/main/homepage.scss */
+  top: 230px; }
+  /* line 48, ../../scss/main/homepage.scss */
   #login-form form {
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #d3d3d3;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 1px 15px 0px rgba(211, 211, 211, 0.5);
+    -moz-box-shadow: 0px 1px 15px 0px rgba(211, 211, 211, 0.5);
+    box-shadow: 0px 1px 15px 0px rgba(211, 211, 211, 0.5);
     margin-bottom: 0; }
-  /* line 35, ../../scss/main/homepage.scss */
+  /* line 60, ../../scss/main/homepage.scss */
+  #login-form .forgot-password {
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 10px; }
+  /* line 67, ../../scss/main/homepage.scss */
   #login-form .input {
     width: 268px;
     padding: 11px 6px;
@@ -39,14 +64,14 @@ body {
     margin-bottom: 15px;
     margin-bottom: 0;
     margin-top: 15px; }
-    /* line 42, ../../scss/main/homepage.scss */
+    /* line 74, ../../scss/main/homepage.scss */
     #login-form .input[type=submit] {
       width: 280px; }
-    /* line 48, ../../scss/main/homepage.scss */
+    /* line 80, ../../scss/main/homepage.scss */
     #login-form .input:first-child {
       margin-top: 0; }
 
-/* line 54, ../../scss/main/homepage.scss */
+/* line 86, ../../scss/main/homepage.scss */
 .socialaccount_providers {
   list-style: none;
   margin: 0; }

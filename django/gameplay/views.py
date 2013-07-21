@@ -16,30 +16,31 @@ from games.models import Game
 from gameplay.models import GameSession
 
 
-@login_required
 def index(request, id_number):	
 	game = Game.objects.get(id=id_number)
 	
 	if (game == None):
 		return HttpResponse(status=404)
 
-	sessions_query = request.user.gamesession_set.filter(game=game)
-	if (sessions_query.count() == 0):
-		return HttpResponseRedirect(reverse('game-request-invite', args=(game.id,)))
+	user = request.user
 
+	sessions_query =  user.gamesession_set.filter(game=game) if (user and user.is_authenticated and user.is_active) else None
+
+	if (sessions_query != None and sessions_query.count() == 0):
+		return HttpResponseRedirect(reverse('game-request-invite', args=(game.id,)))
+		
 	now = timezone.now()
 	if (game.start_date > now):
 		return HttpResponse('TODO: add registered screen');
 
 	# Now execute Gameplay logic
-
 	c = {} #Context
 	
 	game_user_sessions = GameSession.objects.filter(game=game)
 
 	c['game']  = game
 	c['user_sessions'] = game_user_sessions
-	
+
 	return render(request, 'gameplay/index.html', c,)
 
 @login_required

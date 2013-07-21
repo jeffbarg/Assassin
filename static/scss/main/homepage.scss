@@ -12,26 +12,58 @@ body {
 	background-color: #970105;
 }
 
+#homepage-header {
+	margin-top: 40px;
+
+	.tagline {
+		margin-top: 10px;
+		font-size: 13pt;
+	}
+
+	ul {
+		margin: 0;
+		li {
+			display: inline-block;
+			margin-left: 10px;
+		}
+		a {
+			display: block;
+		}
+	}
+}
+
 #login-form {
 	$loginFormWidth: 280px;
 	$loginFormPadding: 20px;
 
-	width: $loginFormWidth;
-	padding: $loginFormPadding;
 
+	width: $loginFormWidth;
+	
 	position: absolute;
 	left: 50%;
 	margin-left: -$loginFormWidth/2 - $loginFormPadding;
+
 	top: 230px;
 
-	background-color: white;
-	border: 1px solid #d3d3d3;
-	
-	@include border-radius(10px);
-	@include box-shadow(0px 1px 15px 0px rgba(#d3d3d3, 0.5));
 	form {
-		margin-bottom: 0;
+		width:100%;
+		padding: $loginFormPadding;
+
+		background-color: white;
+		border: 1px solid #d3d3d3;
+		
+		@include border-radius(10px);
+		@include box-shadow(0px 1px 15px 0px rgba(#d3d3d3, 0.5));
+
+		margin-bottom: 0; //Gets rid of weird form margin
 	}
+	.forgot-password {
+		text-align: center;
+		width:100%;
+		padding: 0 $loginFormPadding;
+		margin-top: 10px;
+	}
+
 	.input {
 		width: $loginFormWidth - 12;
 		padding: 11px 6px;
@@ -55,3 +87,4 @@ body {
 	list-style: none;
 	margin: 0;
 }
+
