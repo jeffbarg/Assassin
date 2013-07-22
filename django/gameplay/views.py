@@ -28,19 +28,21 @@ def index(request, id_number):
 
 	if (sessions_query != None and sessions_query.count() == 0):
 		return HttpResponseRedirect(reverse('game-request-invite', args=(game.id,)))
-		
-	now = timezone.now()
-	if (game.start_date > now):
-		return HttpResponse('TODO: add registered screen');
 
 	# Now execute Gameplay logic
 	c = {} #Context
 	
 	game_user_sessions = GameSession.objects.filter(game=game)
+	now = timezone.now()
+	
 
-	c['game']  = game
+	c['game']          = game
 	c['user_sessions'] = game_user_sessions
+	
+	c['is_logged_in']  = user.is_authenticated()
+	c['game_started']  = game.start_date < now
 
+	c['single_col']    = (not user.is_authenticated() or (game.start_date > now))
 	return render(request, 'gameplay/index.html', c,)
 
 @login_required

@@ -12,7 +12,7 @@ def create_signup_event(sender, **kwargs):
 	event             = GameEvent()
 	
 	event.game        = session.game
-	event.from_user   = session.user
+	event.from_user   = session
 	event.message     = 'signed up to play.'
 	event.action_type = 'S'
 

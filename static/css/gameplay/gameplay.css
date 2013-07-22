@@ -6,9 +6,14 @@
 /* line 10, ../../scss/gameplay/gameplay.scss */
 .right-col {
   float: right;
-  width: 700px; }
+  width: 700px;
+  margin: auto; }
+  /* line 16, ../../scss/gameplay/gameplay.scss */
+  .right-col.single-col {
+    float: none;
+    width: 940px; }
 
-/* line 15, ../../scss/gameplay/gameplay.scss */
+/* line 22, ../../scss/gameplay/gameplay.scss */
 .module {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -17,12 +22,12 @@
   border-radius: 4px;
   border: 1px solid #d8d8d8;
   margin-bottom: 20px; }
-  /* line 21, ../../scss/gameplay/gameplay.scss */
+  /* line 28, ../../scss/gameplay/gameplay.scss */
   .module .header {
     color: #a1101d;
     font-size: 12pt;
     font-weight: 600; }
-  /* line 27, ../../scss/gameplay/gameplay.scss */
+  /* line 34, ../../scss/gameplay/gameplay.scss */
   .module.top {
     border-top: none;
     -moz-border-radius-topleft: 0;
@@ -31,24 +36,24 @@
     -moz-border-radius-topright: 0;
     -webkit-border-top-right-radius: 0;
     border-top-right-radius: 0; }
-  /* line 31, ../../scss/gameplay/gameplay.scss */
+  /* line 38, ../../scss/gameplay/gameplay.scss */
   .module.module-content {
     padding: 10px; }
 
-/* line 36, ../../scss/gameplay/gameplay.scss */
+/* line 43, ../../scss/gameplay/gameplay.scss */
 #pin {
   height: 120px; }
 
-/* line 39, ../../scss/gameplay/gameplay.scss */
+/* line 46, ../../scss/gameplay/gameplay.scss */
 #past-targets {
   height: 320px; }
 
-/* line 43, ../../scss/gameplay/gameplay.scss */
+/* line 50, ../../scss/gameplay/gameplay.scss */
 #target-info {
   height: 340px;
   background-color: #f0f0f0;
   position: relative; }
-  /* line 49, ../../scss/gameplay/gameplay.scss */
+  /* line 56, ../../scss/gameplay/gameplay.scss */
   #target-info .target-img {
     width: 130px;
     height: 130px;
@@ -58,33 +63,46 @@
     margin-left: -65px;
     border: 5px solid #f0f0f0; }
 
-/* line 64, ../../scss/gameplay/gameplay.scss */
+/* line 71, ../../scss/gameplay/gameplay.scss */
 #assignment {
   padding: 8px 10px; }
-  /* line 66, ../../scss/gameplay/gameplay.scss */
+  /* line 73, ../../scss/gameplay/gameplay.scss */
   #assignment input[type="text"] {
     width: 150px;
     margin-bottom: auto; }
+  /* line 78, ../../scss/gameplay/gameplay.scss */
+  #assignment .tagline {
+    float: right; }
 
-/* line 72, ../../scss/gameplay/gameplay.scss */
+/* line 83, ../../scss/gameplay/gameplay.scss */
 .hero-img {
   height: 220px;
   background-size: cover;
   background-repeat: no-repeat; }
 
-/* line 78, ../../scss/gameplay/gameplay.scss */
+/* line 88, ../../scss/gameplay/gameplay.scss */
+#countdown {
+  line-height: 220px;
+  height: 220px;
+  font-size: 20pt;
+  color: white;
+  text-align: center;
+  font-family: 'Menlo';
+  width: 100%; }
+
+/* line 101, ../../scss/gameplay/gameplay.scss */
 .timeline ul {
   list-style: none;
   padding: 0;
   margin: 0; }
-  /* line 83, ../../scss/gameplay/gameplay.scss */
+  /* line 106, ../../scss/gameplay/gameplay.scss */
   .timeline ul li {
     height: 50px;
     line-height: 50px;
     padding: 0 20px; }
-    /* line 89, ../../scss/gameplay/gameplay.scss */
+    /* line 112, ../../scss/gameplay/gameplay.scss */
     .timeline ul li:nth-child(odd) {
       background-color: white; }
-    /* line 92, ../../scss/gameplay/gameplay.scss */
+    /* line 115, ../../scss/gameplay/gameplay.scss */
     .timeline ul li:nth-child(even) {
       background-color: #f0f0f0; }

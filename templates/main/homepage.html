@@ -31,7 +31,7 @@
 <div id="login-form">
 	{# Regular Account Sign-In #}
 	<form class="login" method="POST" action="{% url 'account_login' %}">
-		<input id="id_login" class="input" name="login" placeholder="E-mail address" type="text">
+		<input id="id_login" class="input" name="login" placeholder="E-mail address" type="email">
 		<input id="id_password" class="input" name="password" placeholder="Password" type="password">
 
 		<input class="btn input" type="submit" value="{% trans "Sign In" %}">

@@ -10,6 +10,13 @@ $redColor: #a1101d;
 .right-col {
 	float: right;
 	width: 700px;
+
+	margin: auto;
+
+	&.single-col {
+		float: none;
+		width: 940px;
+	}
 }
 
 .module {
@@ -67,12 +74,28 @@ $redColor: #a1101d;
 		width: 150px;
 		margin-bottom: auto;
 	}
+
+	.tagline {
+		float: right;
+	}
 }
 
 .hero-img {
 	height: 220px;
 	background-size: cover;
 	background-repeat: no-repeat;
+}
+#countdown {
+	line-height: 220px;
+	height: 220px;
+
+
+	font-size: 20pt;
+	color: white;
+	text-align: center;
+
+	font-family: 'Menlo';
+	width: 100%;
 }
 .timeline {
 	ul {
