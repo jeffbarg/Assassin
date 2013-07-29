@@ -30,7 +30,7 @@
 <div class="right-col {% if single_col %}single-col{% endif %}">
 	<div class="module top">
 		<div id="target-info">
-			{% if is_logged_in and game_started %}
+			{% if is_game_member %}
 				<div class="hero-img" style="background-image:url('https://sphotos-b.xx.fbcdn.net/hphotos-ash3/s720x720/535908_2823165914515_799835421_n.jpg'); background-position:0 -19px;">
 				</div>
 				<div style="background-image:url({% avatar_url user 130 %});" class="img-circle target-img">

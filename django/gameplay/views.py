@@ -23,26 +23,26 @@ def index(request, id_number):
 		return HttpResponse(status=404)
 
 	user = request.user
+	now = timezone.now()
 
-	sessions_query =  user.gamesession_set.filter(game=game) if (user and user.is_authenticated and user.is_active) else None
+	game_user_sessions =  user.gamesession_set.filter(game=game) if (user and user.is_authenticated and user.is_active) else None
 
-	if (sessions_query != None and sessions_query.count() == 0):
+	is_game_member = game_user_sessions != None and game_user_sessions.count() != 0
+	is_game_started = game.start_date < now
+
+	if (is_game_member and not is_game_started):
 		return HttpResponseRedirect(reverse('game-request-invite', args=(game.id,)))
 
 	# Now execute Gameplay logic
 	c = {} #Context
 	
-	game_user_sessions = GameSession.objects.filter(game=game)
-	now = timezone.now()
+	c['game']           = game
+	c['user_sessions']  = game_user_sessions
 	
-
-	c['game']          = game
-	c['user_sessions'] = game_user_sessions
+	c['is_game_member'] = is_game_member
+	c['game_started']   = game.start_date < now
 	
-	c['is_logged_in']  = user.is_authenticated()
-	c['game_started']  = game.start_date < now
-
-	c['single_col']    = (not user.is_authenticated() or (game.start_date > now))
+	c['single_col']     = (user.is_authenticated() and game.start_date < now)
 	return render(request, 'gameplay/index.html', c,)
 
 @login_required
@@ -54,10 +54,6 @@ def request_invite(request, id_number):
 	
 	if (game == None):
 		return HttpResponse(status=404)
-
-	now = timezone.now()
-	if (game.start_date < now):
-		return HttpResponse('TODO: add game already started screen');
 
 	if request.method == "GET":
 		sessions_query = request.user.gamesession_set.filter(game=game)
