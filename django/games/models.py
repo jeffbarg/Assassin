@@ -18,6 +18,9 @@ class Game(models.Model):
 
 	start_date         = models.DateTimeField('Start Date')
 
+	group_gid 		   = models.IntegerField('Facebook Group GID')
+	group_photo		   = models.URLField('Facebook Group Photo')
+
 	valid_email_suffix = models.CharField('Email Suffix', max_length=100,
 		help_text='Whitelisted domain name',
 		validators=[
@@ -31,6 +34,8 @@ class Game(models.Model):
 		if not self.id:
 			if not self.created_at:
 				self.created_at = timezone.now()
+			if not self.name:
+				self.name = "Assassin"
 
 		super(Game, self).save()
 
@@ -38,7 +43,7 @@ class Game(models.Model):
 		return self.name
 
 	def get_absolute_url(self):
-		return reverse('gameplay.views.index', args=[str(self.id)])
+		return reverse('gameplay:index', args=[str(self.id)])
 
 
 	def register_user(self, user):

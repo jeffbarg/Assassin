@@ -5,12 +5,27 @@
 <h1>Hello!</h1>
 <p>This is the games app. You are editing {{game}}</p>
 
-<form method="post" action="{% url 'games.views.edit' game.id %}">
+<form method="post" action="{% url 'games:edit' game.id %}">
 {% csrf_token %}
 
 <table>
 {{form}}
 </table>
+
+{% if groups %}
+<table class="table table-hover">
+{% for group in groups %}
+	<tr>
+		<td>
+			<label for="{{group.gid}}">{{group.name}}</label>
+		</td>
+		<td>
+			<input type="radio" name="selected-group" id="{{group.gid}}" />
+		</td>
+	</p>
+{% endfor %}
+</table>
+{% endif %}
 
 <input type="hidden" name="id_creator" value="{{user.id}}" />
 <input type="submit" value="Update" />

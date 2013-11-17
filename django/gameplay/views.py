@@ -16,7 +16,7 @@ from games.models import Game
 from gameplay.models import GameSession
 
 
-def index(request, id_number):	
+def index(request, id_number):
 	game = Game.objects.get(id=id_number)
 	
 	if (game == None):
@@ -30,8 +30,8 @@ def index(request, id_number):
 	is_game_member = game_user_sessions != None and game_user_sessions.count() != 0
 	is_game_started = game.start_date < now
 
-	if (is_game_member and not is_game_started):
-		return HttpResponseRedirect(reverse('game-request-invite', args=(game.id,)))
+	if (not is_game_member and not is_game_started):
+		return HttpResponseRedirect(reverse('gameplay:invite', args=(game.id,)))
 
 	# Now execute Gameplay logic
 	c = {} #Context
@@ -40,9 +40,9 @@ def index(request, id_number):
 	c['user_sessions']  = game_user_sessions
 	
 	c['is_game_member'] = is_game_member
-	c['game_started']   = game.start_date < now
+	c['game_started']   = is_game_started
 	
-	c['single_col']     = (user.is_authenticated() and game.start_date < now)
+	c['single_col']     = (is_game_member and not is_game_started)
 	return render(request, 'gameplay/index.html', c,)
 
 @login_required
@@ -58,7 +58,7 @@ def request_invite(request, id_number):
 	if request.method == "GET":
 		sessions_query = request.user.gamesession_set.filter(game=game)
 		if (sessions_query.count() != 0):
-			return HttpResponseRedirect(reverse('game-index', args=(game.id,)));
+			return HttpResponseRedirect(reverse('gameplay:index', args=(game.id,)));
 		
 		return render(request, 'gameplay/request_invite.html', c,)	
 	else:
@@ -66,7 +66,7 @@ def request_invite(request, id_number):
 		user = request.user
 		if (game.allows_user(user)):
 			game.register_user(user)
-			return HttpResponseRedirect(reverse('game-index', args=(game.id,)))
+			return HttpResponseRedirect(reverse('gameplay:index', args=(game.id,)))
 		else:
 			c['error_message'] = 'You are not permitted to join this game.'
 			return render(request, 'gameplay/request_invite.html', c,) 

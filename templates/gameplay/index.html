@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="{% static "css/gameplay/gameplay.css" %}"/>
 {% endblock %}
 
+{% block title %}asdf{% endblock %}
+
 {% block content %}
 
 {% if not single_col %}
@@ -31,9 +33,9 @@
 	<div class="module top">
 		<div id="target-info">
 			{% if is_game_member %}
-				<div class="hero-img" style="background-image:url('https://sphotos-b.xx.fbcdn.net/hphotos-ash3/s720x720/535908_2823165914515_799835421_n.jpg'); background-position:0 -19px;">
+				<div class="hero-img" style="background-image:url('{{game.group_photo | safe}}'); background-position:0 -19px; background-color:#282828;">
 				</div>
-				<div style="background-image:url({% avatar_url user 130 %});" class="img-circle target-img">
+				<div style="background-image:url('{% avatar_url user 130 %}');" class="img-circle target-img">
 				</div>
 			{% else %}
 				<div class="hero-img" style="background-color:#282828;">

@@ -35,10 +35,11 @@
 		<input id="id_password" class="input" name="password" placeholder="Password" type="password">
 
 		<input class="btn input" type="submit" value="{% trans "Sign In" %}">
-		{# Facebook Sign In w/ Django-AllAuth #}		
-
-		<a href="{% provider_login_url 'facebook' process='login' %}" class="btn btn-primary input">Connect With Facebook</a>
 		
+		{# Facebook Sign In w/ Django-AllAuth #}		
+		<a href="{% provider_login_url 'facebook' process='login' %}" class="btn btn-primary input">Connect With Facebook</a>
+
+		{{request.user}}
 		{% if redirect_field_value %}
 		<input type="hidden" class="input" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
 		{% endif %}

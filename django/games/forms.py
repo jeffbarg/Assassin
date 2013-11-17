@@ -6,15 +6,19 @@ from django import forms
 
 from games.models import Game
 
-from django.contrib.admin.widgets import AdminDateWidget 
+from django.contrib.admin.widgets import * 
+from django.forms.extras.widgets import *
+
+from datetimewidget.widgets import DateTimeWidget
+
 from django.utils import timezone
 
 class GameCreateForm(forms.ModelForm):
-	start_date = forms.DateTimeField(initial=timezone.now(), widget=forms.Textarea())
+	start_date = forms.DateTimeField(initial=timezone.now(), widget=SelectDateWidget())
 
 	class Meta:
 		model = Game
-		fields = ('name','valid_email_suffix','start_date')
+		fields = ('start_date',)
         widgets = {
             'start_date':  AdminDateWidget,
         }

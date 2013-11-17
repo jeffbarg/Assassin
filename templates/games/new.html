@@ -1,26 +1,43 @@
 {% extends "main/base.html" %}
 
+{% load staticfiles %}
+
+{% block extrastyle %}
+{{ block.super }}
+
+<link rel="stylesheet" href="{% static "css/games/games.css" %}"/>
+{% endblock %}
+
+
 {% block content %}
 
 <h1>Hello!</h1>
 <p>This is the games app.</p>
 
-<form method="post" action="{% url 'games.views.new' %}">
+<form method="post" action="{% url 'games:new' %}">
 {% csrf_token %}
 
 <table>
 {{form}}
 </table>
-	{% if groups %}
-	{% for group in groups %}
-		<p>
-			<label for="{{group.id}}">{{group.name}}</label>
-			<input type="checkbox" name="{{group.id}}" id="{{group.id}}" />
 
-			{{group.pic_cover}}
-		</p>
-	{% endfor %}
-	{% endif %}
+{% if groups %}
+<table class="table table-hover">
+{% for group in groups %}
+	<tr>
+		<td>
+			<label for="{{group.gid}}">{{group.name}}</label>
+		</td>
+		<td>
+			<input type="radio" name="selected-group" id="{{group.gid}}" value="{{group.gid}}" />
+			<input type="hidden" name="{{group.gid}}-name" value="{{group.name}}" />
+			<input type="hidden" name="{{group.gid}}-photo" value="{{group.pic_cover}}" />
+		</td>
+	</p>
+{% endfor %}
+</table>
+{% endif %}
+
 <input type="hidden" name="id_creator" value="{{user.id}}" />
 <input type="submit" value="Create" />
 </form>

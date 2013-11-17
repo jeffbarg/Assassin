@@ -156,7 +156,8 @@ INSTALLED_APPS = (
 	    'allauth.socialaccount.providers.facebook',
 
 	'bootstrapform',
-
+	'datetimewidget',
+	
 	'south',
 )
 

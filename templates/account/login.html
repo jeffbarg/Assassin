@@ -31,19 +31,21 @@
 <div id="login-form">
   {# Regular Account Sign-In #}
   <form class="login" method="POST" action="{% url 'account_login' %}">
-    <input id="id_login" class="input" name="login" placeholder="E-mail address" type="text">
+    <input id="id_login" class="input" name="login" placeholder="E-mail address" type="email">
     <input id="id_password" class="input" name="password" placeholder="Password" type="password">
 
     <input class="btn input" type="submit" value="{% trans "Sign In" %}">
     {# Facebook Sign In w/ Django-AllAuth #}    
 
-    <a href="{% provider_login_url 'facebook' process='login' %}" class="btn btn-primary input">Connect With Facebook</a>
+
+    <a href="{% provider_login_url 'facebook' method='oauth2' process='login' %}" class="btn btn-primary input">Connect With Facebook</a>
     
     {% if redirect_field_value %}
     <input type="hidden" class="input" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
     {% csrf_token %}
   </form>
+  {{request.user}}
   <div class="forgot-password">
     <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
   </div>

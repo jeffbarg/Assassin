@@ -4,13 +4,13 @@
 
 <h1>Hey there!</h1>
 <p>This is the games app.</p>
-<a href="{% url 'games.views.new' %}">Create New Game</a>
+<a href="{% url 'games:new' %}">Create New Game</a>
 
 <ul>
 	{% for game in games %}
 	<li><a href="{{game.get_absolute_url}}">{{game}}</a>
-	- <a href="{% url 'games.views.edit' game.id %}">Edit</a>
-	- <a href="{% url 'games.views.delete' game.id %}">Delete</a>
+	- <a href="{% url 'games:edit' game.id %}">Edit</a>
+	- <a href="{% url 'games:delete' game.id %}">Delete</a>
 	</li>
 	{% endfor %}
 	

@@ -57,7 +57,7 @@ MEDIA_ROOT = '/Users/jeffbarg/Sites/assassin/media'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -109,6 +109,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
@@ -154,10 +155,10 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-	    'allauth.socialaccount.providers.facebook',
-
+        'allauth.socialaccount.providers.facebook',
+	
 	'bootstrapform',
-
+	
 	'south',
 )
 
@@ -180,19 +181,22 @@ SOCIALACCOUNT_PROVIDERS = \
           'METHOD': 'oauth2' ,
           'LOCALE_FUNC': lambda request: 'en_US'} }
 
-LOGIN_REDIRECT_URL            = 'games.views.index'
+LOGIN_REDIRECT_URL            = 'main.views.index'
 
 ACCOUNT_EMAIL_REQUIRED        = True
 ACCOUNT_USERNAME_REQUIRED     = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-SOCIALACCOUNT_AVATAR_SUPPORT  = 'avatar'
+SOCIALACCOUNT_AVATAR_SUPPORT  = "avatar"
 
 
 AUTO_GENERATE_AVATAR_SIZES    = (130,)
-AVATAR_THUMB_QUALITY          = 1
+AVATAR_THUMB_QUALITY          = 100
 AVATAR_DEFAULT_URL            = "/static/target_default.png"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

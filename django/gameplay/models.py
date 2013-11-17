@@ -39,7 +39,6 @@ class GameSession(models.Model):
 class GameEvent(models.Model):
 	ACTION_TYPES = (
 		('S', 'Sign Up'),
-		('P', 'Profile Update'),
 		('K', 'Kill'),
 		('T', 'Text'),
 	)

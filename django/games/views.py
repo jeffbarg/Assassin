@@ -14,6 +14,8 @@ from games.forms import GameCreateForm, GameDeleteForm
 
 from facepy import GraphAPI
 
+import json
+
 # Create your views here.
 
 @login_required
@@ -32,13 +34,24 @@ def new(request, redirect_to="/games/"):
 		form = creation_form(data=request.POST)
 		if form.is_valid():
 
-			# Ensure the user-originating redirection url is safe.
-			redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
+			redirect_to      = resolve_url(settings.LOGIN_REDIRECT_URL)
 
-			# Okay, security check complete. Log the user in.
-			# auth_login(request, form.get_user())
-			game = form.save(commit=False);
-			game.creator = user
+			game             = form.save(commit=False);
+
+			game.creator     = user
+			
+			game.group_gid   = request.POST['selected-group']
+			game.name        = request.POST[game.group_gid + '-name']
+			
+			group_photo_json = request.POST[game.group_gid + '-photo']
+			if (group_photo_json != 'None'):
+				
+				group_photo_json = json.loads(group_photo_json.replace("'", '"')) #Replace single quotes with double
+
+				game.group_photo = group_photo_json['source']	
+			
+			
+
 			game.save()	
 
 			return HttpResponseRedirect(redirect_to)
