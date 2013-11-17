@@ -109,6 +109,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
+    "django.contrib.auth.backends.ModelBackend",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -170,8 +171,8 @@ INSTALLED_APPS = (
 
 # DJANGO_FACEBOOK https://github.com/tschellenbach/Django-facebook
 
-FACEBOOK_APP_ID     = '465041326919886'
-FACEBOOK_APP_SECRET = 'b6c9ac1913db9f36b591b59c5987221d'
+FACEBOOK_APP_ID     = '205727192917480'
+FACEBOOK_APP_SECRET = 'f0c1a6325503c74dd6e0e832faf3d8e2'
 
 SOCIALACCOUNT_PROVIDERS = \
     { 'facebook':
@@ -180,16 +181,16 @@ SOCIALACCOUNT_PROVIDERS = \
           'METHOD': 'oauth2' ,
           'LOCALE_FUNC': lambda request: 'en_US'} }
 
-LOGIN_REDIRECT_URL            = 'games.views.index'
+LOGIN_REDIRECT_URL            = 'main.views.index'
 
 ACCOUNT_EMAIL_REQUIRED        = True
 ACCOUNT_USERNAME_REQUIRED     = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-SOCIALACCOUNT_AVATAR_SUPPORT  = 'avatar'
+SOCIALACCOUNT_AVATAR_SUPPORT  = "avatar"
 
 
 AUTO_GENERATE_AVATAR_SIZES    = (130,)
-AVATAR_THUMB_QUALITY          = 1
+AVATAR_THUMB_QUALITY          = 100
 AVATAR_DEFAULT_URL            = "/static/target_default.png"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

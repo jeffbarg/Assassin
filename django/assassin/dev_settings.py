@@ -109,8 +109,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
+    "django.contrib.auth.backends.ModelBackend",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -194,8 +194,6 @@ AVATAR_THUMB_QUALITY          = 100
 AVATAR_DEFAULT_URL            = "/static/target_default.png"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 
 # A sample logging configuration. The only tangible logging
